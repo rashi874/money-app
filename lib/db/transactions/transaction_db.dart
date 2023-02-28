@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'package:moneyapp/models/transaction/transaction_model.dart';
+import 'package:money_manager_pro/models/transaction/transaction_model.dart';
 
 const TRANSACTION_DB_NAME = 'transation-db';
 
@@ -35,7 +35,7 @@ class TransactionDB implements TransactionDbFunctions {
     transactionListNotifier.value.addAll(_list);
     transactionListNotifier.notifyListeners();
   }
-
+                              
   @override
   Future<List<TransactionModel>> getAllTranscactions() async {
     final _db = await Hive.openBox<TransactionModel>(TRANSACTION_DB_NAME);

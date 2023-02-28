@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moneyapp/screens/home/screen_home.dart';
+import 'package:money_manager_pro/screens/home/screen_home.dart';
 
 class MoneyManagerBottomNavigation extends StatelessWidget {
   const MoneyManagerBottomNavigation({Key? key}) : super(key: key);
@@ -10,19 +10,21 @@ class MoneyManagerBottomNavigation extends StatelessWidget {
         valueListenable: ScreenHome.selectedIndexNotifier,
         builder: (BuildContext ctx, int updatedIndex, Widget? _) {
           return BottomNavigationBar(
-            selectedItemColor: Colors.green,
-            unselectedItemColor: Colors.black,
+            landscapeLayout: BottomNavigationBarLandscapeLayout.linear,
+            elevation: 0,
+            selectedItemColor: Colors.green.shade300,
+            unselectedItemColor: Colors.grey[600],
             currentIndex: updatedIndex,
             onTap: (newIndex) {
               ScreenHome.selectedIndexNotifier.value = newIndex;
             },
             items: const [
               BottomNavigationBarItem(
-                icon: Icon(Icons.home_outlined),
-                label: 'Transactions',
+                icon: Icon(Icons.cabin),
+                label: 'Home',
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.category_outlined),
+                icon: Icon(Icons.cable),
                 label: 'Categories',
               ),
             ],

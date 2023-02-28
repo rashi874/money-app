@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:moneyapp/models/category/category_model.dart';
+import 'package:money_manager_pro/models/category/category_model.dart';
 
 const CATEGORY_DB_NAME = 'category-database';
 
