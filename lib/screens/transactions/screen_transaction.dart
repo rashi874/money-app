@@ -23,7 +23,6 @@ class ScreenTransaction extends StatelessWidget {
               child: Text(
                 'Transactions is empty',
                 style: TextStyle(
-                  // color: kwhiteColor,
                   fontSize: 16,
                 ),
               ),
@@ -46,7 +45,6 @@ class ScreenTransaction extends StatelessWidget {
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               padding: const EdgeInsets.symmetric(horizontal: 1, vertical: 5),
-              //values
               itemBuilder: (ctx, index) {
                 final _value = newlist[index];
                 return Slidable(
@@ -55,6 +53,7 @@ class ScreenTransaction extends StatelessWidget {
                     motion: const ScrollMotion(),
                     children: [
                       SlidableAction(
+                        backgroundColor: Colors.transparent,
                         onPressed: (ctx) {
                           TransactionDB.instance.deleteTransaction(_value.id!);
                         },
@@ -63,70 +62,44 @@ class ScreenTransaction extends StatelessWidget {
                       )
                     ],
                   ),
-                  child: Center(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 5, vertical: 1),
-                      child: Card(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(13.0),
-                        ),
-                        // color: Colors.grey[900],
-                        elevation: 0,
-                        child: ListTile(
-                          trailing: Container(
-                            // color: Colors.red,
-                            // // margin: const EdgeInsets.all(15.0),
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 5, vertical: 3),
-                            decoration: BoxDecoration(
-                              color: Colors.blueGrey[600],
-                              // border: Border.all(
-                              //   color: Colors.blueAccent,
-                              // ),
-                              borderRadius: const BorderRadius.all(
-                                Radius.circular(10.0),
-                                //          <--- border radius here
-                              ),
-                            ),
-                            child: Text(
-                              _value.purpose,
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 12,
-                              ),
-                            ),
+                  child: ListTile(
+                    trailing: Card(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 10.0, vertical: 4),
+                        child: Text(
+                          _value.purpose,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 12,
                           ),
-                          leading: CircleAvatar(
-                            radius: 25,
-                            child: Text(
-                              parseDate(_value.date),
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 13,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                            backgroundColor: _value.type == CategoryType.income
-                                ? Colors.green[600]
-                                : Colors.red[600],
-                          ),
-                          title: Text(
-                            '₹ ${_value.amount}',
-                          ),
-                          subtitle: Text(_value.category.name),
                         ),
                       ),
                     ),
+                    leading: CircleAvatar(
+                      radius: 22,
+                      child: Text(
+                        parseDate(_value.date),
+                        style: const TextStyle(
+                            color: Colors.white,
+                            fontFamily: 'Roboto',
+                            fontSize: 12,
+                            height: 1),
+                        textAlign: TextAlign.center,
+                      ),
+                      backgroundColor: _value.type == CategoryType.income
+                          ? Colors.green[600]
+                          : Colors.red[600],
+                    ),
+                    title: Text(
+                      '₹ ${_value.amount}',
+                      style: const TextStyle(fontFamily: 'Roboto'),
+                    ),
+                    subtitle: Text(_value.category.name),
                   ),
                 );
               },
-              // separatorBuilder: (ctx, index) {
-              //   return const SizedBox(
-              //     height: 0,
-              //   );
-              // },
-
               itemCount: newlist.length,
             )
           ]);

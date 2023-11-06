@@ -12,19 +12,20 @@ class MoneyManagerBottomNavigation extends StatelessWidget {
           return BottomNavigationBar(
             landscapeLayout: BottomNavigationBarLandscapeLayout.linear,
             elevation: 0,
-            selectedItemColor: Colors.green.shade300,
-            unselectedItemColor: Colors.grey[600],
+            selectedFontSize: 14,
+            unselectedFontSize: 14,
+            iconSize: 20,
             currentIndex: updatedIndex,
             onTap: (newIndex) {
               ScreenHome.selectedIndexNotifier.value = newIndex;
             },
             items: const [
               BottomNavigationBarItem(
-                icon: Icon(Icons.cabin),
-                label: 'Home',
+                icon: Icon(Icons.web_stories),
+                label: 'Transactions',
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.cable),
+                icon: Icon(Icons.wysiwyg_sharp),
                 label: 'Categories',
               ),
             ],

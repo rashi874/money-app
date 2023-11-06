@@ -1,4 +1,6 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:money_manager_pro/core/colors/colors.dart';
 
 import 'package:money_manager_pro/core/constant.dart';
 import 'package:money_manager_pro/db/category/category_db.dart';
@@ -17,7 +19,7 @@ class ScreenaddTransaction extends StatefulWidget {
 class _ScreenaddTransactionState extends State<ScreenaddTransaction> {
   DateTime selectedDate = DateTime.now();
   CategoryType? _selectedCategoryType;
-  CategoryModel? _SelectedCategoryModel;
+  CategoryModel? _selectedCategoryModel;
 
   String? _categoryID;
   final _puposeTextEditingController = TextEditingController();
@@ -57,410 +59,273 @@ class _ScreenaddTransactionState extends State<ScreenaddTransaction> {
     }
   }
 
-/*
-purpose
-Date
-Amount
-Income/Expense
-CategoryType
-*/
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
+      appBar: AppBar(actions: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+          child: Text(
+            'Add Transaction',
+            style: Theme.of(context).textTheme.bodyLarge,
+          ),
+        ),
+      ]),
+      body: Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              decoration: BoxDecoration(
-                color: Colors.green.shade100,
-                // border: Border.all(
-                //   color: Colors.grey,
-                // ),
-                border: Border.all(
-                  color: Colors.blueGrey,
-                ),
-                borderRadius: const BorderRadius.all(
-                  Radius.circular(
-                    20.0,
-                  ),
-
-                  //          <--- border radius here
-                ),
+            Padding(
+              padding: const EdgeInsets.all(5),
+              child: Text(
+                'Fill The Details Below',
+                style: Theme.of(context).textTheme.titleMedium,
               ),
-              child: const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text(
-                  'Add Transactions',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.black,
+            ),
+            kHeight,
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 6),
+              child: TextFormField(
+                controller: _puposeTextEditingController,
+                keyboardType: TextInputType.text,
+                decoration: InputDecoration(
+                  contentPadding: const EdgeInsets.symmetric(horizontal: 10),
+                  hintText: "Electricity Bill",
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(30.0),
+                    borderSide:
+                        BorderSide(color: Appcolors.kprimary, width: 0.07),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(30.0),
+                    borderSide:
+                        BorderSide(color: Appcolors.kprimary, width: 0.07),
                   ),
                 ),
               ),
             ),
-            // IconButton(
-            //   onPressed: () {
-            //     Navigator.pop(context);
-            //   },
-            //   icon: const Icon(
-            //     Icons.close,
-            //   ),
-            // )
-          ],
-        ),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: SafeArea(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              // purpuse
-
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        color: Colors.green.shade100,
-                        // border: Border.all(
-                        //   color: Colors.blue.shade100,
-                        // ),
-                        borderRadius: const BorderRadius.all(
-                          Radius.circular(20.0),
-                          //          <--- border radius here
-                        ),
-                      ),
-                      child: const Padding(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 20,
-                          vertical: 9,
-                        ),
-                        child: Text(
-                          ' Fill The Details Below',
-                          style: TextStyle(
-                            fontSize: 17,
-                            color: Colors.black,
-                            // backgroundColor: Colors.blue[100]
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              kHeight,
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 18, vertical: 5),
-                child: TextFormField(
-                  // cursorColor: Colors.red,
-                  controller: _puposeTextEditingController,
-                  keyboardType: TextInputType.text,
-                  decoration: InputDecoration(
-                    focusColor: Colors.amber,
-                    labelText: "Purpuse",
-                    labelStyle: TextStyle(
-                      color: Colors.green.shade300,
-                    ),
-                    // fillColor: Colors.white,
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(30.0),
-                      borderSide: BorderSide(
-                        color: Colors.blue.shade100,
-                      ),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(30.0),
-                      borderSide: BorderSide(
-                        color: Colors.green.shade100,
-                        width: 1.0,
-                      ),
-                    ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 6),
+              child: TextFormField(
+                controller: _amountTextEditingController,
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                  contentPadding: const EdgeInsets.symmetric(horizontal: 10),
+                  hintText: "500",
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(30.0),
+                    borderSide:
+                        BorderSide(color: Appcolors.kprimary, width: 0.07),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(30.0),
+                    borderSide:
+                        BorderSide(color: Appcolors.kprimary, width: 0.07),
                   ),
                 ),
               ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 18, vertical: 5),
-                child: TextFormField(
-                  // cursorColor: Colors.white,
-                  controller: _amountTextEditingController,
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                    labelText: "Amount",
-                    labelStyle: TextStyle(
-                      color: Colors.green.shade300,
-                    ),
-                    focusColor: Colors.red,
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(30.0),
-                      borderSide: BorderSide(
-                        color: Colors.blue.shade100,
-                      ),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(30.0),
-                      borderSide: BorderSide(
-                        color: Colors.green.shade100,
-                        width: 1.0,
-                      ),
-                    ),
+            ),
+            //calender
+
+            Container(
+              margin: const EdgeInsets.symmetric(vertical: 8.0),
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Appcolors.kprimary,
+                  width: 0.09,
+                ),
+                borderRadius: const BorderRadius.all(
+                  Radius.circular(25.0),
+                ),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 15,
+                ),
+                child: TextButton.icon(
+                  onPressed: () {
+                    _selectDate(context);
+                  },
+                  icon: const Icon(
+                    Icons.date_range,
+                  ),
+                  label: Text(
+                    "${selectedDate.day} ${months[selectedDate.month - 1]}",
+                    style: const TextStyle(),
                   ),
                 ),
               ),
-              //calender
+            ),
 
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
+            // category
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Container(
                   decoration: BoxDecoration(
-                    color: Colors.green.shade100,
-                    // border: Border.all(
-                    //     // color: Colors.blue.shade100,
-                    //     ),
-                    borderRadius: const BorderRadius.all(
-                      Radius.circular(25.0),
-                      //          <--- border radius here
-                    ),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 15,
-                    ),
-                    child: TextButton.icon(
-                      onPressed: () {
-                        _selectDate(context);
-                        //
-                        // to make sure that no keyboard is shown after selecting Date
-                        // FocusScope.of(context).unfocus();
-                        // async {
-                        //   final _selectedDateTemp = await showDatePicker(
-                        //     context: context,
-                        //     initialDate: DateTime.now(),
-                        //     firstDate:
-                        //         DateTime.now().subtract(const Duration(days: 30)),
-                        //     lastDate: DateTime.now(),
-                        //   );
-
-                        //   if (_selectedDateTemp == null) {
-                        //     return;
-                        //   } else {
-                        //     print(_selectedDateTemp.toString());
-                        //     String formattedDate = DateFormat('yyyy-MM-dd – kk:mm')
-                        //         .format(_selectedDateTemp);
-                        //     // print(DateFormat.yMMMd().format(_selectedDateTemp));
-                        //     setState(() {
-                        //       _selectedDate = formattedDate as DateTime?;
-                        //     });
-                        //     print(formattedDate.toString());
-                        //   }
-                      },
-                      icon: const Icon(
-                        Icons.date_range,
-                        color: Colors.black,
-                      ),
-                      label: Text(
-                        "${selectedDate.day} ${months[selectedDate.month - 1]}",
-                        // _selectedDate == null
-                        //     ? 'Select Date'
-                        //     : _selectedDate!.toString(),
-                        style: const TextStyle(
-                          color: Colors.black,
-                          fontSize: 16,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-
-              // category
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      color: Colors.green.shade100,
-                      // border: Border.all(
-                      //     // color: Colors.blue.shade100,
-                      //     ),
-                      borderRadius: const BorderRadius.all(
-                        Radius.circular(25.0),
-                        //          <--- border radius here
-                      ),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 15),
-                      child: Row(
-                        children: [
-                          Radio(
-                            activeColor: Colors.black,
-                            value: CategoryType.income,
-                            groupValue: _selectedCategoryType,
-                            onChanged: (newValue) {
-                              setState(() {
-                                _selectedCategoryType = CategoryType.income;
-                                _categoryID = null;
-                              });
-                            },
-                          ),
-                          const Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 5),
-                            child: Text(
-                              'Income',
-                              style: TextStyle(color: Colors.black),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                      color: Colors.green.shade100,
-                      // border: Border.all(
-                      //     // color: Colors.blue.shade100,
-                      //     ),
-                      borderRadius: const BorderRadius.all(
-                        Radius.circular(25.0),
-                        //          <--- border radius here
-                      ),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 15),
-                      child: Row(
-                        children: [
-                          Radio(
-                            activeColor: Colors.black,
-                            value: CategoryType.expense,
-                            groupValue: _selectedCategoryType,
-                            onChanged: (newValue) {
-                              setState(() {
-                                _selectedCategoryType = CategoryType.expense;
-                                _categoryID = null;
-                              });
-                            },
-                          ),
-                          const Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 5),
-                            child: Text('Expense',
-                                style: TextStyle(color: Colors.black)),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-
-              // category type
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.green.shade100,
                     border: Border.all(
-                      color: Colors.green.shade100,
+                      color: Appcolors.kprimary,
+                      width: 0.09,
                     ),
                     borderRadius: const BorderRadius.all(
                       Radius.circular(25.0),
-                      //          <--- border radius here
                     ),
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: DropdownButton<String>(
-                      elevation: 0,
-                      dropdownColor: Colors.transparent,
-                      underline: const SizedBox(),
-                      focusColor: Colors.red,
-                      hint: const Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(
-                          'Select Category',
-                          style: TextStyle(color: Colors.black),
+                    padding: const EdgeInsets.symmetric(horizontal: 15),
+                    child: Row(
+                      children: [
+                        Radio(
+                          value: CategoryType.income,
+                          groupValue: _selectedCategoryType,
+                          onChanged: (newValue) {
+                            setState(() {
+                              _selectedCategoryType = CategoryType.income;
+                              _categoryID = null;
+                            });
+                          },
                         ),
+                        const Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 5),
+                          child: Text(
+                            'Income',
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  width: 15,
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Appcolors.kprimary,
+                      width: 0.09,
+                    ),
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(25.0),
+                    ),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 15),
+                    child: Row(
+                      children: [
+                        Radio(
+                          value: CategoryType.expense,
+                          groupValue: _selectedCategoryType,
+                          onChanged: (newValue) {
+                            setState(() {
+                              _selectedCategoryType = CategoryType.expense;
+                              _categoryID = null;
+                            });
+                          },
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 5),
+                          child: Text(
+                            'Expense',
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+
+            // category type
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8.0),
+              child: Container(
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Appcolors.kprimary,
+                    width: 0.09,
+                  ),
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(25.0),
+                  ),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: DropdownButton<String>(
+                    elevation: 0,
+                    underline: const SizedBox(),
+                    hint: const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Text(
+                        'Select Category',
                       ),
-                      value: _categoryID,
-                      items: (_selectedCategoryType == CategoryType.income
-                              ? CategoryDB().incomeCategoryListListener
-                              : CategoryDB().expenseCategoryListListener)
-                          .value
-                          .map((e) {
-                        return DropdownMenuItem(
-                          // alignment: Alignment.center,
-                          value: e.id,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: Colors.green.shade100,
-                              border: Border.all(
-                                color: Colors.black,
-                              ),
-                              borderRadius: const BorderRadius.all(
-                                Radius.circular(25.0),
-                                //          <--- border radius here
-                              ),
+                    ),
+                    value: _categoryID,
+                    items: (_selectedCategoryType == CategoryType.income
+                            ? CategoryDB().incomeCategoryListListener
+                            : CategoryDB().expenseCategoryListListener)
+                        .value
+                        .map((e) {
+                      return DropdownMenuItem(
+                        value: e.id,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Appcolors.kprimary,
+                              width: 0.09,
                             ),
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 10,
-                                vertical: 5,
-                              ),
-                              child: Text(
-                                e.name,
-                                style: const TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.black,
-                                ),
-                              ),
+                            borderRadius: const BorderRadius.all(
+                              Radius.circular(25.0),
                             ),
                           ),
-                          onTap: () {
-                            _SelectedCategoryModel = e;
-                          },
-                        );
-                      }).toList(),
-                      onChanged: (selectedValue) {
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 10,
+                              vertical: 5,
+                            ),
+                            child: Text(
+                              e.name,
+                              style: const TextStyle(),
+                            ),
+                          ),
+                        ),
+                        onTap: () {
+                          _selectedCategoryModel = e;
+                        },
+                      );
+                    }).toList(),
+                    onChanged: (selectedValue) {
+                      if (kDebugMode) {
                         print(selectedValue);
+                      }
 
-                        setState(
-                          () {
-                            _categoryID = selectedValue;
-                          },
-                        );
-                      },
-                    ),
+                      setState(
+                        () {
+                          _categoryID = selectedValue;
+                        },
+                      );
+                    },
                   ),
                 ),
               ),
-              kHeight,
-              //submit
-              ElevatedButton(
-                onPressed: () {
-                  addTransaction();
-                },
-                child: const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text(
-                    'Submit',
-                    style: TextStyle(fontSize: 16, color: Colors.black),
-                  ),
-                ),
-                style: ElevatedButton.styleFrom(
-                  shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(20),
-                    ),
-                  ),
+            ),
+            kHeight,
+            //submit
+            ElevatedButton(
+              onPressed: () {
+                addTransaction();
+              },
+              child: const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Text(
+                  'Submit',
                 ),
               ),
-            ],
-          ),
+              style: ElevatedButton.styleFrom(
+                elevation: 0,
+              ),
+            ),
+          ],
         ),
       ),
     );
@@ -478,10 +343,8 @@ CategoryType
     if (_categoryID == null) {
       return;
     }
-    // if (selectedDate == null) {
-    //   return;
-    // }
-    if (_SelectedCategoryModel == null) {
+
+    if (_selectedCategoryModel == null) {
       return;
     }
     final _parsedAmount = double.tryParse(_amountText);
@@ -497,7 +360,7 @@ CategoryType
       amount: _parsedAmount,
       date: selectedDate,
       type: _selectedCategoryType!,
-      category: _SelectedCategoryModel!,
+      category: _selectedCategoryModel!,
     );
     await TransactionDB.instance.addTransaction(_model);
     Navigator.of(context).pop();

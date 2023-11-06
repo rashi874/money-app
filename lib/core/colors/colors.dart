@@ -1,7 +1,7 @@
-// import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 
-// const backgroundColor = Colors.black;
-// const kwhiteColor = Colors.white;
-// final kButtoncolorBlue = Colors.blueAccent[700];
-// const kButtonColorWhite = Colors.white;
-// const kBlackColor = Colors.black;
+class Appcolors {
+  static Color kblack = Colors.black;
+  static Color kwhite = Colors.white;
+  static Color kprimary = const Color(0xff5542d2);
+}

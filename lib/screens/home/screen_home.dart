@@ -20,27 +20,8 @@ class ScreenHome extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        title: Center(
-          child: Row(
-            children: const [
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 4),
-                child: Icon(
-                  Icons.money,
-                  size: 35,
-                  // color: Colors.greenAccent[100],
-                ),
-              ),
-              Text(
-                'Money Manager Pro',
-                style: TextStyle(
-                  // color: Colors.white70,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ],
-          ),
+        title: const Text(
+          'CashFlow',
         ),
         centerTitle: false,
       ),
@@ -54,18 +35,10 @@ class ScreenHome extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(
-            Radius.circular(13.0),
-          ),
-        ),
         onPressed: () {
           if (selectedIndexNotifier.value == 0) {
-            // print('Add Transaction');
             Navigator.of(context).pushNamed(ScreenaddTransaction.routeName);
           } else {
-            // print('Add Category');
-
             showCategoryAddPopup(context);
           }
         },

@@ -23,22 +23,22 @@ class IncomeCategoryList extends StatelessWidget {
           }
           return ListView.separated(
             itemBuilder: (ctx, index) {
-              final Category = newlist[index];
-              return Container(
-                margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 3),
-                child: Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8.0),
+              final category = newlist[index];
+              return ListTile(
+                leading: CircleAvatar(
+                  child: Center(
+                    child: Text(category.name[0],
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                            fontSize: 20, fontFamily: 'Roboto')),
                   ),
-                  child: ListTile(
-                    title: Text(Category.name),
-                    trailing: IconButton(
-                      onPressed: () {
-                        CategoryDB.instance.deleteCategory(Category.id);
-                      },
-                      icon: const Icon(Icons.delete),
-                    ),
-                  ),
+                ),
+                title: Text(category.name),
+                trailing: IconButton(
+                  onPressed: () {
+                    CategoryDB.instance.deleteCategory(category.id);
+                  },
+                  icon: const Icon(Icons.delete),
                 ),
               );
             },

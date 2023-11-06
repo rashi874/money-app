@@ -30,24 +30,12 @@ class _ScreenCategoryState extends State<ScreenCategory>
           child: Container(
             margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 9),
             decoration: BoxDecoration(
-              // color: Colors.grey,
               borderRadius: BorderRadius.circular(8),
             ),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 7),
               child: TabBar(
                 controller: _tabController,
-                labelColor: Colors.black,
-                unselectedLabelColor: Colors.blueGrey,
-                // isScrollable: true,
-                labelStyle: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
-                ),
-                indicator: BoxDecoration(
-                  color: Colors.green.shade100,
-                  borderRadius: BorderRadius.circular(8),
-                ),
                 tabs: const [
                   Tab(text: 'Income'),
                   Tab(text: 'Expense'),

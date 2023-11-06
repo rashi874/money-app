@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:money_manager_pro/core/colors/colors.dart';
 import 'package:money_manager_pro/db/category/category_db.dart';
 import 'package:money_manager_pro/models/category/category_model.dart';
 
@@ -11,38 +12,40 @@ Future<void> showCategoryAddPopup(BuildContext context) async {
     context: context,
     builder: (ctx) {
       return SimpleDialog(
+        surfaceTintColor: Colors.transparent,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10.0),
+          borderRadius: BorderRadius.circular(15.0),
         ),
         title: const Text('Add Category'),
         children: [
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(12.0),
             child: TextFormField(
               controller: _nameEditingController,
               decoration: InputDecoration(
-                labelText: "Category Name",
-                fillColor: Colors.white,
+                contentPadding: const EdgeInsets.symmetric(horizontal: 8),
+                hintText: "Salary, Rent, Food etc",
                 focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(16.0),
-                  borderSide: const BorderSide(
-                    color: Colors.grey,
+                  borderRadius: BorderRadius.circular(12.0),
+                  borderSide: BorderSide(
+                    color: Appcolors.kprimary.withOpacity(0.7),
+                    width: 0.9,
                   ),
                 ),
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12.0),
-                  borderSide: const BorderSide(
-                    color: Colors.blueGrey,
-                    width: 1.0,
+                  borderSide: BorderSide(
+                    color: Appcolors.kprimary.withOpacity(0.7),
+                    width: 0.9,
                   ),
                 ),
               ),
             ),
           ),
-          Padding(
-              padding: const EdgeInsets.all(8.0),
+          const Padding(
+              padding: EdgeInsets.all(8.0),
               child: Row(
-                children: const [
+                children: [
                   RadioButtton(
                     title: 'Income',
                     type: CategoryType.income,
@@ -93,7 +96,6 @@ Future<void> showCategoryAddPopup(BuildContext context) async {
 class RadioButtton extends StatelessWidget {
   final String title;
   final CategoryType type;
-  // final CategoryType selectCategoryType;
   const RadioButtton({
     Key? key,
     required this.title,
@@ -108,7 +110,6 @@ class RadioButtton extends StatelessWidget {
           valueListenable: selectedCategoryNotifier,
           builder: (BuildContext ctx, CategoryType newCategory, Widget? _) {
             return Radio<CategoryType>(
-              // activeColor: Colors.red,
               value: type,
               groupValue: selectedCategoryNotifier.value,
               onChanged: (value) {

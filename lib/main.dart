@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:money_manager_pro/core/colors/colors.dart';
 import 'package:money_manager_pro/screens/add_transaction/screen_add_transaction.dart';
 import 'package:money_manager_pro/screens/home/screen_home.dart';
 
@@ -32,60 +33,46 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Money Manager Pro',
-
       theme: ThemeData(
-        primaryColor: Colors.white,
+        useMaterial3: true,
+        primaryColor: Appcolors.kwhite,
         brightness: Brightness.light,
-        primarySwatch: Colors.blueGrey,
-        cardColor: Colors.green.shade100.withOpacity(0.5),
+        primarySwatch: Colors.deepPurple,
+        fontFamily: 'Product Sans',
+        cardTheme: CardTheme(
+          color: Appcolors.kprimary,
+        ),
+        cardColor: Appcolors.kprimary,
         appBarTheme: AppBarTheme(
-          color: Colors.grey[50],
-          foregroundColor: Colors.black,
-          elevation: 0,
-        ),
+            systemOverlayStyle: SystemUiOverlayStyle(
+                systemNavigationBarColor: Appcolors.kwhite,
+                statusBarColor: Appcolors.kwhite,
+                statusBarBrightness: Brightness.light,
+                statusBarIconBrightness: Brightness.dark)),
         floatingActionButtonTheme: FloatingActionButtonThemeData(
-          backgroundColor: Colors.green.shade200,
-        ),
+            backgroundColor: Appcolors.kprimary,
+            foregroundColor: Appcolors.kwhite),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
-            primary: Colors.green.shade200,
-          ),
+              backgroundColor: Appcolors.kprimary,
+              foregroundColor: Appcolors.kwhite),
         ),
-        fontFamily: GoogleFonts.roboto().fontFamily,
 
         /* light theme settings */
       ),
       darkTheme: ThemeData(
-        primarySwatch: Colors.grey,
-        primaryColor: Colors.black,
+        primarySwatch: Colors.deepPurple,
         brightness: Brightness.dark,
-
-        // primarySwatch: Colors.blueGrey,
+        fontFamily: 'Product Sans',
+        useMaterial3: true,
         cardColor: Colors.blueGrey.shade900.withOpacity(0.6),
-        appBarTheme: AppBarTheme(
-          color: Colors.black,
-          foregroundColor: Colors.white,
-          shadowColor: Colors.white.withOpacity(0.0),
+        appBarTheme: const AppBarTheme(
+          systemOverlayStyle: SystemUiOverlayStyle(
+              systemNavigationBarColor: Color.fromARGB(255, 27, 27, 27),
+              statusBarColor: Color.fromARGB(255, 27, 27, 27),
+              statusBarIconBrightness: Brightness.light),
         ),
-        floatingActionButtonTheme: FloatingActionButtonThemeData(
-          backgroundColor: Colors.green.shade200,
-        ),
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(
-            primary: Colors.green.shade200,
-          ),
-        ),
-        fontFamily: GoogleFonts.roboto().fontFamily,
-        canvasColor: Colors.black,
-
-        /* dark theme settings */
       ),
-      // themeMode: ThemeMode.dark,
-
-      /* ThemeMode.system to follow system theme,
-             ThemeMode.light for light theme,
-             ThemeMode.dark for dark theme
-          */
       debugShowCheckedModeBanner: false,
       home: const ScreenHome(),
       routes: {

@@ -15,7 +15,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.0.1+2
+version: 1.0.1+3
 
 environment:
   sdk: ">=2.15.1 <3.0.0"
@@ -37,7 +37,6 @@ dependencies:
   intl: ^0.17.0
   path_provider: ^2.0.8
   uuid: ^3.0.5
-  google_fonts: 2.2.0
   getwidget: ^2.0.5
   shared_preferences: ^2.0.13
 
@@ -70,17 +69,17 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
+  fonts:
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/Roboto-Medium.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
+    - family: Product Sans
+      fonts:
+        - asset: assets/fonts/Product Sans Regular.ttf
+        - asset: assets/fonts/Product Sans Bold.ttf
+          weight: 500
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
